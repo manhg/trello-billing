@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Trello Billing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/github.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+  <style>
+  td {
+    padding: 8px 10px;
+  }
+
+  td:first-child {
+    font-family: monospace;
+  }
+
+  h3 {
+    margin-top: 100px;
+  }
+
+  h5 {
+    margin-bottom: 0;
+  }
+
+  hr {
+    margin-top: 2px;
+  }
+
+  .example-1 {
+    height: 600px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .example-2, .example-3, .example-4, .example-5, .example-6 {
+    height: 250px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .example-flex {
+    height: 200px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .example-flex-reverse {
+    flex-direction: row-reverse;
+  }
+
+  #one, #two {
+    padding: 20px;
+  }
+
+  #one p {
+    padding: 0;
+  }
+
+  .example-4, .example-5 {
+    height: 400px;
+  }
+
+  .split p, .split-flex p {
+    padding: 20px;
+  }
+
+  .split, .split-flex {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .gutter {
+    background-color: #eee;
+
+    background-repeat: no-repeat;
+    background-position: 50%;
+  }
+
+  .gutter.gutter-horizontal {
+    background-image: url('vertical.png');
+    cursor: ew-resize;
+  }
+
+  .gutter.gutter-vertical {
+    background-image: url('orizontal.png');
+    cursor: ns-resize;
+  }
+
+  .split.split-horizontal, .gutter.gutter-horizontal {
+    height: 100%;
+    float: left;
+  }
+
+  #boards, #cards {
+    padding: 0.5em;
+  }
+  body { font-family: Verdana, "Open Sans", sans-serif; font-size: 12px }
+  </style>
+</head>
+<body>
+
+<script src="split.js"></script>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+
+<div id="left" class="split split-horizontal">
+    <div id=boards></div>
+</div>
+<div id="right" class="split split-horizontal">
+    <div id=cards></div>
+</div>
+
+<script>
+Split(['#left', '#right'], {
+    sizes: [25, 75],
+    minSize: 200
+})
+</script>
+
+<script src="https://api.trello.com/1/client.js?key=d7ffef72ab44e12ae1295f1e18358934"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/riot/3.11.2/riot.min.js"></script>
+<script src="board.tag.js"></script>
+<script src="billing.tag.js"></script>
+<script src="app.coffee.js"></script>
+<script src="auth.js"></script>
+
+</body>
+</html>

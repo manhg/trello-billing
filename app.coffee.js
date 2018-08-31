@@ -37,25 +37,27 @@
     App.prototype.start = function() {
       return Trello.get('/members/me/boards', (function(_this) {
         return function(boards) {
-          var board, i, len, ref, results;
-          $('main');
-          _this.boards = boards.filter(function(b) {
-            return !b.closed;
-          });
-          ref = _this.boards;
+          var _board, i, len, results;
           results = [];
-          for (i = 0, len = ref.length; i < len; i++) {
-            board = ref[i];
-            results.push(Trello.get("/boards/" + board.id + "/lists").then(function(lists) {
-              var element;
-              element = document.createElement('x-board');
-              $('#boards').append(element);
-              return riot.mount(element, 'x-board', {
-                board: board,
-                lists: lists,
-                getCards: _this.getCards
+          for (i = 0, len = boards.length; i < len; i++) {
+            _board = boards[i];
+            if (_board.closed) {
+              continue;
+            }
+            results.push((function() {
+              var board;
+              board = $.extend({}, _board);
+              return Trello.get("/boards/" + board.id + "/lists").then(function(lists) {
+                var element;
+                element = document.createElement('x-board');
+                $('#boards').append(element);
+                return riot.mount(element, 'x-board', {
+                  board: board,
+                  lists: lists,
+                  getCards: _this.getCards
+                });
               });
-            }));
+            })());
           }
           return results;
         };

@@ -1,2 +1,2 @@
-riot.tag2('x-board', '<strong>{opts.board.name}</strong> <div each="{listing in opts.lists}"> <div title="{listing.shortLink}" onclick="{opts.getCards}"> {listing.name} </div> </div>', '', '', function(opts) {
+riot.tag2('x-board', '<br> <strong>{opts.board.name}</strong> <hr> <div each="{listing in opts.lists}"> <div title="{listing.shortLink}" onclick="{opts.getCards}"> {listing.name} </div> </div>', 'x-board hr,[data-is="x-board"] hr{ margin: 0; }', '', function(opts) {
 });

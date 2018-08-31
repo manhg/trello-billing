@@ -25,16 +25,19 @@ class App
 
     start: ->
         Trello.get '/members/me/boards', (boards) =>
-            $('main')
-            @boards = boards.filter (b) -> not b.closed
-            for board in @boards
-                Trello.get("/boards/#{board.id}/lists").then (lists) =>
-                    element = document.createElement 'x-board'
-                    $('#boards').append(element)
-                    riot.mount element, 'x-board',
-                        board: board,
-                        lists: lists
-                        getCards: @getCards
+            for _board in boards
+                continue if _board.closed
+                ( =>
+                    board = $.extend {}, _board
+
+                    Trello.get("/boards/#{board.id}/lists").then (lists) =>
+                        element = document.createElement 'x-board'
+                        $('#boards').append(element)
+                        riot.mount element, 'x-board',
+                            board: board,
+                            lists: lists
+                            getCards: @getCards
+                )()
 
 
     getCards: (e) ->

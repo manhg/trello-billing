@@ -1,14 +1,14 @@
 on_error = (error) ->
     console.log error
 
-HOUR_R = /(\d+)h$/
-YEN_R = /¥(\d+)$/u
-DOLLAR_R = /\u0024(\d+)$/u
+HOUR_R = /([\.\d]+)h$/
+YEN_R = /¥(\d+)$/
+DOLLAR_R = /\u0024(\d+)$/
 
 get_num = (regex, target) ->
     ret = regex.exec(target)
     if ret isnt null
-        return parseInt(ret[1])
+        return parseFloat(ret[1])
     else
         return 0
 
